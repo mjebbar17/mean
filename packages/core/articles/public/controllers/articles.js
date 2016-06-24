@@ -3,6 +3,7 @@
 angular.module('mean.articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles', 'MeanUser', 'Circles',
   function($scope, $stateParams, $location, Global, Articles, MeanUser, Circles) {
     $scope.global = Global;
+    $scope.isUserLoggedin = MeanUser.loggedin;
 
     $scope.hasAuthorization = function(article) {
       if (!article || !article.user) return false;
@@ -89,5 +90,6 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
         $scope.article = article;
       });
     };
+
   }
 ]);
