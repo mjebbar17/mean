@@ -106,15 +106,16 @@ module.exports = function(Articles) {
          */
         show: function(req, res) {
 
-            Articles.events.publish({
-                action: 'viewed',
-                user: {
-                    name: req.user.name
-                },
-                name: req.article.title,
-                url: config.hostname + '/articles/' + req.article._id
-            });
-
+            if(req.user) {
+                Articles.events.publish({
+                    action: 'viewed',
+                    user: {
+                        name: req.user.name
+                    },
+                    name: req.article.title,
+                    url: config.hostname + '/articles/' + req.article._id
+                });
+            }
             res.json(req.article);
         },
         /**
