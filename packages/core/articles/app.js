@@ -15,6 +15,7 @@ Articles.register(function(app, auth, database, circles, swagger) {
 
   //We enable routing. By default the Package Object is passed to the routes
   Articles.routes(app, auth, database);
+  Articles.angularDependencies(['mean.comments']);
 
   Articles.aggregateAsset('css', 'articles.css');
 

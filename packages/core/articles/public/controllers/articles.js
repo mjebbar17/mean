@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('mean.articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles', 'MeanUser', 'Circles',
-  function($scope, $stateParams, $location, Global, Articles, MeanUser, Circles) {
+angular.module('mean.articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Global', 'Articles', 'Comments', 'MeanUser', 'Circles',
+  function($scope, $stateParams, $location, Global, Articles, Comments, MeanUser, Circles) {
+
     $scope.global = Global;
     $scope.isUserLoggedin = MeanUser.loggedin;
 
@@ -89,7 +90,36 @@ angular.module('mean.articles').controller('ArticlesController', ['$scope', '$st
       }, function(article) {
         $scope.article = article;
       });
+
+      //create new comment object
+      $scope.newComment = {
+        content : ""
+      }
+
+      //get all comment for article
+      Comments.get({
+        articleId: $stateParams.articleId
+      }, function(comments) {
+        $scope.comments = comments;
+      });
     };
+
+    $scope.addComment = function(){
+
+      //create new comment object
+      $scope.newComment.articleId = $scope.article._id;
+      if(MeanUser.user.name) {
+        $scope.newComment.username = MeanUser.user.name;
+      }
+
+      var comment = new Comments($scope.newComment);
+
+      comment.$save(function(comment) {
+        $scope.comments.push(comment);
+        $scope.newComment = {};
+
+      });
+    }
 
   }
 ]);
