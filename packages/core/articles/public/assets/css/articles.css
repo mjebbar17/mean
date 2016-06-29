@@ -4,3 +4,52 @@ h1 {
 ul.articles li:not(:last-child) {
 	border-bottom: 1px solid #ccc
 }
+
+#view-article-page{
+	text-align: center;
+}
+
+#comment-text-input-area {
+	width: 40%;
+	height: 80px;
+	margin: 10px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	border: 0;
+	padding: 10px;
+}
+
+#add-comment-btn{
+	height: 30px;
+	display: block;
+	width: 40%;
+	margin: 0 auto 10px auto;
+}
+
+.comment-holder{
+	width: 40%;
+	margin: 50px auto;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	padding: 20px;
+	position: relative;
+}
+
+p.comment-date {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin: 5px;
+	color: #949494;
+}
+
+.comment-content{
+	margin: 15px;
+}
+
+p.comment-user.ng-binding {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	margin: 5px;
+	color: #949494;
+	text-transform: capitalize;
+}

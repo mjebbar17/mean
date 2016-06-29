@@ -1,4 +1,4 @@
-<section data-ng-controller="ArticlesController" data-ng-init="findOne()">
+<section data-ng-controller="ArticlesController" data-ng-init="findOne()" id="view-article-page">
   <span>{{article.created | date:'medium'}}</span> /
   <span>{{article.user.name}}</span>
   <h2>{{article.title}}</h2>
@@ -11,4 +11,22 @@
     </a>
   </div>
   <div>{{article.content}}</div>
+  <div>
+    <textarea id="comment-text-input-area" ng-model="newComment.content" placeholder="Add comment..."></textarea>
+    <button id="add-comment-btn" ng-click="addComment()" ng-disabled="newComment.content.length < 4">add</button>
+  </div>
+
+  <div class="comment-holder" ng-repeat="comment in comments.slice().reverse()">
+    <p class="comment-date">
+      {{comment.created | date:'yyyy-MM-dd HH:mm'}}
+    </p>
+
+    <p class="comment-user">
+      {{comment.username || "anonymous"}}
+    </p>
+
+    <div class="comment-content">
+      {{comment.content}}
+    </div>
+  </div>
 </section>
